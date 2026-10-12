@@ -13,6 +13,27 @@ Denne guide beskriver, hvilken model og hvilket reasoning-niveau der bruges til 
 | Søgning og oversigt over kode | Hurtig model, lavt reasoning | Rent opslag. |
 | Dokumentation og rettelser af tekst | Hurtig model, lavt reasoning | Lav risiko. |
 
+## Profiler
+
+Vælg én profil i konfigurationen nedenfor. Profilen angiver model og reasoning pr. opgavetype.
+
+### Prisvenlig
+
+Billigste model med god kvalitet. Eskaler til en stærkere model ved komplekse opgaver.
+
+| Opgavetype | Model | Reasoning |
+| --- | --- | --- |
+| Planlægning og arkitektur | `gpt-6-luna` | high |
+| Implementering af afgrænset kode | `gpt-6-luna` | low |
+| Code review | `gpt-6-luna` | high |
+| Fejlfinding (ukendt årsag) | `gpt-6-luna` | high |
+| Søgning og oversigt over kode | `gpt-6-luna` | none |
+| Dokumentation og rettelser af tekst | `gpt-6-luna` | none |
+
+Priser for `gpt-6-luna`: 10 credits pr. 1M input-tokens, 1 credit pr. 1M cached input, 50 credits pr. 1M output-tokens.
+
+Eskalering: brug `gpt-6.1-sol` til komplekse planer, arkitektur og review af sikkerhedskritisk kode.
+
 ## Kontekst
 
 - Giv altid agenten masterplan, relevant sub-plan og berørte filer, frem for hele repositoryet.
@@ -27,5 +48,6 @@ Denne guide beskriver, hvilken model og hvilket reasoning-niveau der bruges til 
 
 ## Konfiguration i projektet
 
+- Profil: `{{PROFIL}}` (`Prisvenlig` eller en egen profil)
 - Standardmodel: `{{STANDARD_MODEL}}`
 - Reasoning-niveau for planlægning: `{{PLAN_REASONING}}`
